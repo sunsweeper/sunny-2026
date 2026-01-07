@@ -75,6 +75,10 @@
         body: JSON.stringify({ message: text }),
       });
 
+      if (!response.ok) {
+        throw new Error('Request failed');
+      }
+
       const data = await response.json();
       replyText = data.reply || 'Sorry, I could not respond.';
     } catch (err) {
