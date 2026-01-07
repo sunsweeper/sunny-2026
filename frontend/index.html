@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sunny Widget Demo</title>
+  <link rel="stylesheet" href="./widget.css" />
+</head>
+<body>
+  <main style="padding: 40px; font-family: Arial, sans-serif; max-width: 700px; margin: auto;">
+    <h1>Sunny Assistant Demo</h1>
+    <p>Click the Sunny button in the bottom-right corner to start chatting. This page uses the standalone widget files.</p>
+  </main>
+
+  <script>
+    window.SUNNY_WIDGET_CONFIG = {
+      apiBase: 'http://localhost:3001'
+    };
+  </script>
+  <script src="./widget.js"></script>
+</body>
+</html>

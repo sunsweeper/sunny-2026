@@ -67,54 +67,20 @@
     let replyText = '';
 
     try {
-      const response = await fetch(`${config.apiBase}/api/chat?stream=true`, {
+      const response = await fetch('/api/chat', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
-          'Accept': 'text/event-stream',
         },
         body: JSON.stringify({ message: text }),
-        credentials: 'include',
       });
 
-      const contentType = response.headers.get('content-type') || '';
-      if (contentType.includes('text/event-stream')) {
-        const reader = response.body.getReader();
-        const decoder = new TextDecoder('utf-8');
-        let buffer = '';
-
-        while (true) {
-          const { value, done } = await reader.read();
-          if (done) break;
-          buffer += decoder.decode(value, { stream: true });
-
-          let boundary = buffer.indexOf('\n\n');
-          while (boundary !== -1) {
-            const raw = buffer.slice(0, boundary).trim();
-            buffer = buffer.slice(boundary + 2);
-            if (raw.startsWith('data:')) {
-              const payload = raw.replace(/^data:\s*/, '');
-              try {
-                const parsed = JSON.parse(payload);
-                if (parsed.token) {
-                  replyText += parsed.token;
-                  renderOrUpdateAssistant(replyText);
-                } else if (parsed.done) {
-                  break;
-                } else if (parsed.error) {
-                  throw new Error(parsed.error);
-                }
-              } catch (err) {
-                console.error('SSE parse error', err);
-              }
-            }
-            boundary = buffer.indexOf('\n\n');
-          }
-        }
-      } else {
-        const data = await response.json();
-        replyText = data.reply || 'Sorry, I could not respond.';
+      if (!response.ok) {
+        throw new Error('Request failed');
       }
+
+      const data = await response.json();
+      replyText = data.reply || 'Sorry, I could not respond.';
     } catch (err) {
       console.error(err);
       replyText = 'Sorry, something went wrong. Please try again.';
