@@ -1,0 +1,25 @@
+{
+  "meta": {
+    "businessName": "SunSweeper",
+    "timezone": "America/Los_Angeles",
+    "serviceAreaCounties": ["San Luis Obispo", "Santa Barbara"],
+    "hours": { "days": ["Mon","Tue","Wed","Thu","Fri","Sat"], "start": "08:00", "end": "17:00" },
+    "holidayExclusions": ["New Year's Day","Memorial Day","Independence Day","Labor Day","Thanksgiving Day","Christmas Day"]
+  },
+  "pricing": {
+    "solarPanelCleaning": {
+      "model": "tiered_total",
+      "tiers": [
+        { "min": 1, "max": 13, "type": "flat", "amount": 149 },
+        { "min": 14, "max": 20, "type": "per_panel", "rate": 11.50 },
+        { "min": 21, "max": 25, "type": "per_panel", "rate": 11.00 },
+        { "min": 26, "max": 30, "type": "per_panel", "rate": 10.50 },
+        { "min": 31, "max": 40, "type": "per_panel", "rate": 9.00 },
+        { "min": 41, "max": 60, "type": "per_panel", "rate": 8.00 }
+      ],
+      "overMaxPanels": 60,
+      "overMaxBehavior": "escalate",
+      "notes": "Pricing is primarily determined by panel count. Over 60 panels: collect details and escalate."
+    }
+  }
+}
