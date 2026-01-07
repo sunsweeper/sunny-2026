@@ -1,0 +1,7 @@
+{
+  "name": "dotenv",
+  "version": "0.0.0-local",
+  "main": "index.js",
+  "description": "Local dotenv loader for Sunny backend",
+  "license": "MIT"
+}

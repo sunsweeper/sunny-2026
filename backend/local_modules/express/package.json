@@ -1,0 +1,7 @@
+{
+  "name": "express",
+  "version": "0.0.0-local",
+  "main": "index.js",
+  "description": "Lightweight local Express-like implementation for Sunny backend",
+  "license": "MIT"
+}

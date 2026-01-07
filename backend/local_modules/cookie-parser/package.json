@@ -1,0 +1,7 @@
+{
+  "name": "cookie-parser",
+  "version": "0.0.0-local",
+  "main": "index.js",
+  "description": "Local cookie parser for Sunny backend",
+  "license": "MIT"
+}
